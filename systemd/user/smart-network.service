@@ -1,0 +1,14 @@
+mkdir -p ~/.config/systemd/user
+
+cat > ~/.config/systemd/user/smart-network.service << 'EOF'
+[Unit]
+Description=Smart Network 5G Check
+After=network.target
+Wants=network.target
+
+[Service]
+Type=oneshot
+ExecStart=%h/.config/waybar/smart-5g.sh check
+Environment=DISPLAY=:0
+Environment=XAUTHORITY=%h/.Xauthority
+EOF
