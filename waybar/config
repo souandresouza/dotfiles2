@@ -2,7 +2,7 @@
   "layer": "top", "position": "top",
   "modules-left": ["hyprland/workspaces", "hyprland/window" ],
   "modules-center": [  "clock", "network"],
-  "modules-right": ["tray",  "custom/clipboard", "backlight", "idle_inhibitor", "custom/colorpicker", "bluetooth", "pulseaudio",  "battery" ],
+  "modules-right": ["backlight", "bluetooth", "pulseaudio",  "battery" ],
   "reload_style_on_change":true,
 
 "hyprland/workspaces": {
@@ -49,7 +49,7 @@
  }, 
 
 "network": {
-    "format-wifi": " {essid} ({signalStrength}%)",
+    "format-wifi": "  {essid} ({signalStrength}%)",
     "format-ethernet": " ",
     "format-disconnected": "",
     "tooltip-format": "{ipaddr}",
