@@ -1,0 +1,115 @@
+{
+    "layer": "top", // Waybar at top layer
+    "position": "top", // Waybar position (top|bottom|left|right)
+    "height": 40,
+    "margin": "0 5 0 5",
+    "spacing":0,
+
+    // Choose the order of the modules
+    // Add according to your wishes: "custom/weather"
+
+    "modules-left": ["custom/launcher", "hyprland/workspaces", "hyprland/window"],
+    "modules-center": ["clock"],
+    "modules-right": ["backlight", "battery", "pulseaudio", "network"],
+
+ // Modules configuration
+
+"hyprland/workspaces": {
+    "format": "{icon}",
+    "on-click": "activate",
+    "all-outputs": true,
+    "sort-by-number": true,
+    "format-icons": {
+      "1": "1",
+      "2": "2",
+      "3": "3",
+      "4": "4",
+      "5": "5",
+      "6": "6",
+      "7": "7",
+      "8": "8",
+      "9": "9",
+      "10": "10",
+      "focused": "",
+      "default": ""
+    },
+    "on-scroll-up": "hyprctl dispatch workspace e+1",
+    "on-scroll-down": "hyprctl dispatch workspace e-1",
+    },
+"hyprland/window": {
+        "format": "{}",
+	"icon":true,
+	"icon-size" : 20
+    },
+"clock": {
+      "format": "{:L%A, %d de %b de %Y | %T}",
+      "interval":1,
+      "tooltip-format": "\n<big>{:L%B %Y}</big>\n<tt><small>{calendar}</small></tt>",
+      "timezone": "America/Sao_Paulo",
+      "locale": "pt_BR.UTF-8",
+      "calendar-weeks-pos": "right",
+      "today-format": "<span color='#7645AD'><b><u>{}</u></b></span>",
+      "format-calendar": "<span color='#aeaeae'><b>{}</b></span>",
+      "format-calendar-weeks": "<span color='#aeaeae'><b>W{:%V}</b></span>",
+      "format-calendar-weekdays": "<span color='#aeaeae'><b>{}</b></span>"
+      },
+"backlight": {
+        // "device": "acpi_video1",
+        "format": "{icon} {percent: >3}%",
+        "format-icons": ["", ""],
+        "on-scroll-down": "brightnessctl -c backlight set 1%-",
+        "on-scroll-up": "brightnessctl -c backlight set +1%",
+        "on-click": "~/.config/waybar/scripts/backlight-hint.sh"
+    },
+"battery": {
+        "states": {
+            // "good": 95,
+            "warning": 30,
+            "critical": 15
+        },
+        "format": "{icon} {capacity: >3}%",
+        "format-icons": ["", "", "", "", ""]
+        // "format-good": "", // An empty format will hide the module
+        // "format-full": "",
+        //"format-icons": ["", "", "", "", "", "", "", "", "", ""]
+        //"format": "&#x202b;{icon}&#x202c; {capacity}%",
+        //"format-icons": ["ﱉ","ﱊ","ﱌ","ﱍ","ﱋ"]
+    },
+"network": {
+    "format-wifi": " {essid} ({signalStrength}%)",
+    "format-ethernet": " ",
+    "format-disconnected": "",
+    "tooltip-format": "{ipaddr}",
+    "tooltip-format-wifi": "{essid} ({signalStrength}%)  \n\nClique: Conectar na melhor rede salva\nTroca automática a cada 2min",
+    "on-click": "~/.config/waybar/auto-best-network.sh",
+    "on-click-right": "networkmanager_dmenu"
+  },
+"custom/launcher": {
+    "format":"    ",
+    	"on-click": "exec nwg-drawer -c 7 -is 70 -spacing 23",
+    	"tooltip": false,
+     },
+"pulseaudio": {
+        "scroll-step": 3, // %, can be a float
+        "format": "{icon} {volume}% {format_source}",
+        "format-bluetooth": "{volume}% {icon} {format_source}",
+        "format-bluetooth-muted": " {icon} {format_source}",
+        "format-muted": " {format_source}",
+        //"format-source": "{volume}% ",
+        //"format-source-muted": "",
+        "format-source": "",
+        "format-source-muted": "",
+        "format-icons": {
+            "headphone": "",
+            "hands-free": "",
+            "headset": "",
+            "phone": "",
+            "portable": "",
+            "car": "",
+            "default": ["", "", ""]
+        },
+        "on-click": "footclient -T waybar_alsamixer -e alsamixer -M",
+        "on-click-right": "pavucontrol"
+        },
+        // https://github.com/chubin/wttr.in
+}
